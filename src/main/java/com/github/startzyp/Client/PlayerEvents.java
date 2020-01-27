@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
-import javax.swing.*;
 import java.nio.charset.Charset;
 
 public class PlayerEvents {
@@ -20,13 +19,14 @@ public class PlayerEvents {
         FMLCommonHandler.instance().bus().register(this);
     }
 
-    @SubscribeEvent
-    public void onClientPacket(FMLNetworkEvent.ClientCustomPacketEvent evt) {
-        evt.getPacket().channel();
-        byte [] strbyte = {};
-        evt.getPacket().payload().readBytes(strbyte);
-        SbanForge.logger.info(new String(evt.getPacket().payload().array()));
-    }
+//    @SubscribeEvent
+//    public void onClientPacket(FMLNetworkEvent.ClientCustomPacketEvent evt) {
+//        evt.getPacket().channel();
+//        byte [] strbyte = {};
+//        evt.getPacket().payload().readBytes(strbyte);
+//
+//        SbanForge.logger.info(new String(evt.getPacket().payload().array()));
+//    }
 
     @SubscribeEvent
     public void PlayerJoinGame(FMLNetworkEvent.ClientConnectedToServerEvent event){
@@ -35,8 +35,8 @@ public class PlayerEvents {
         String playername = Minecraft.getMinecraft().getSession().getUsername();
         PlayerData playerData = new PlayerData(playername,rebootcode);
         byte[] bytes = gson.toJson(playerData).getBytes(Charset.forName("UTF-8"));
-
-        JOptionPane.showMessageDialog(null, rebootcode+"|"+playername, "游戏崩溃请联系腐竹", JOptionPane.PLAIN_MESSAGE);
+        SbanForge.logger.info(playerData.toString());
+        //JOptionPane.showMessageDialog(null, rebootcode+"|"+playername, "游戏崩溃请联系腐竹", JOptionPane.PLAIN_MESSAGE);
         //PlayerData playerData1 = gson.fromJson(new String(bytes, StandardCharsets.UTF_8), PlayerData.class);
         new Thread(){
             @Override

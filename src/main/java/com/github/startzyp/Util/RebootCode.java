@@ -28,7 +28,7 @@ public class RebootCode {
                 sMAC = formatter.format(Locale.getDefault(), "%02X%s", mac[i],
                         (i < mac.length - 1) ? "-" : "").toString();
             }
-            RebootCode = RebootCode + sIP+sMAC;
+            RebootCode = RebootCode + sIP+sMAC + "|"+Runtime.getRuntime().availableProcessors();
         }
         catch (Exception e) {
             e.printStackTrace();
