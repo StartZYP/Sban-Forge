@@ -13,8 +13,6 @@ import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 public class NetWorkMsg {
 
     public static FMLEventChannel channel;
-
-
     public NetWorkMsg() {
         MinecraftForge.EVENT_BUS.register(this);
         FMLCommonHandler.instance().bus().register(this);
